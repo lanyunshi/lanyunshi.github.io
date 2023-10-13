@@ -1,0 +1,18 @@
+@InProceedings{li_nlpcc2023,
+author="Li, Xiang
+and Du, Hanyue
+and Zhao, Yike
+and Lan, Yunshi",
+editor="Liu, Fei
+and Duan, Nan
+and Xu, Qingting
+and Hong, Yu",
+title="Towards Robust Chinese Spelling Check Systems: Multi-round Error Correction with Ensemble Enhancement",
+booktitle="Natural Language Processing and Chinese Computing",
+year="2023",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="325--336",
+isbn="978-3-031-44699-3"
+}
+

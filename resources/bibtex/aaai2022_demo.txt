@@ -1,0 +1,12 @@
+@article{lan_aaai2022, 
+title={MWPToolkit: An Open-Source Framework for Deep Learning-Based Math Word Problem Solvers}, 
+volume={36},
+url={https://ojs.aaai.org/index.php/AAAI/article/view/21723}, 
+DOI={10.1609/aaai.v36i11.21723}, 
+number={11}, 
+journal={Proceedings of the AAAI Conference on Artificial Intelligence}, 
+author={Lan, Yihuai and Wang, Lei and Zhang, Qiyuan and Lan, Yunshi and Dai, Bing Tian and Wang, Yan and Zhang, Dongxiang and Lim, Ee-Peng}, 
+year={2022}, 
+month={Jun.}, 
+pages={13188-13190} 
+}

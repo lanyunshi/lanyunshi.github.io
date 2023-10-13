@@ -1,0 +1,19 @@
+@inproceedings{wu-etal-2021-unidrop,
+    title = "{U}ni{D}rop: A Simple yet Effective Technique to Improve Transformer without Extra Cost",
+    author = "Wu, Zhen  and
+      Wu, Lijun  and
+      Meng, Qi  and
+      Xia, Yingce  and
+      Xie, Shufang  and
+      Qin, Tao  and
+      Dai, Xinyu  and
+      Liu, Tie-Yan",
+    booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.naacl-main.302",
+    doi = "10.18653/v1/2021.naacl-main.302",
+    pages = "3865--3878",
+}

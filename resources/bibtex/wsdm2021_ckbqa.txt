@@ -1,0 +1,13 @@
+@inproceedings{he_wsdm2021,
+  author = {He, Gaole and Lan, Yunshi and Jiang, Jing and Zhao, Wayne Xin and Wen, Ji-Rong},
+  title = {Improving Multi-Hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals},
+  year = {2021},
+  isbn = {9781450382977},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3437963.3441753},
+  doi = {10.1145/3437963.3441753},
+  booktitle = {Proceedings of the 14th ACM International Conference on Web Search and Data Mining},
+  pages = {553–561},
+  numpages = {9}
+}

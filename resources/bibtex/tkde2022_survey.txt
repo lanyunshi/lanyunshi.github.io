@@ -1,0 +1,10 @@
+@article{lan_tkde2023,
+      author={Lan, Yunshi and He, Gaole and Jiang, Jinhao and Jiang, Jing and Zhao, Wayne Xin and Wen, Ji-Rong},
+      journal={IEEE Transactions on Knowledge and Data Engineering}, 
+      title={Complex Knowledge Base Question Answering: A Survey}, 
+      year={2023},
+      volume={35},
+      number={11},
+      pages={11196-11215},
+      doi={10.1109/TKDE.2022.3223858}
+}
