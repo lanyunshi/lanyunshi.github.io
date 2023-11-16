@@ -1,0 +1,15 @@
+@inproceedings{lan_mm2023,
+    author = {Lan, Yunshi and Li, Xiang and Liu, Xin and Li, Yang and Qin, Wei and Qian, Weining},
+    title = {Improving Zero-Shot Visual Question Answering via Large Language Models with Reasoning Question Prompts},
+    year = {2023},
+    isbn = {9798400701085},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3581783.3612389},
+    doi = {10.1145/3581783.3612389},
+    pages = {4389–4400},
+    numpages = {12},
+    keywords = {zero-shot evaluation, large language models, visual question answering},
+    location = {Ottawa ON, Canada},
+    series = {MM '23}
+}
