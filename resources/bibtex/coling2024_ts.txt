@@ -1,0 +1,17 @@
+@inproceedings{tan_coling2024,
+author = {Tan, Keren and Luo, Kangyang and Lan, Yunshi and Yuan, Zheng and She, Jinlong},
+title = {An LLM-Enhanced Adversarial Editing System for Lexical Simplification},
+year = {2024},
+isbn = {9798400701245},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3583780.3615119},
+doi = {10.1145/3583780.3615119},
+abstract = {Chinese Grammatical Error Correction (CGEC) has been attracting growing attention from researchers recently. In spite of the fact that multiple CGEC datasets have been developed to support the research, these datasets lack the ability to provide a deep linguistic topology of grammar errors, which is critical for interpreting and diagnosing CGEC approaches. To address this limitation, we introduce FlaCGEC, which is a new CGEC dataset featured with fine-grained linguistic annotation. Specifically, we collect raw corpus from the linguistic schema defined by Chinese language experts, conduct edits on sentences via rules, and refine generated samples manually, which results in 10k sentences with 78 instantiated grammar points and 3 types of edits. We evaluate various cutting-edge CGEC methods on the proposed FlaCGEC dataset and their unremarkable results indicate that this dataset is challenging in covering a large range of grammatical errors. In addition, we also treat FlaCGEC as a diagnostic dataset for testing generalization skills and conduct a thorough evaluation of existing CGEC models.},
+booktitle = {Proceedings of the 32nd ACM International Conference on Information and Knowledge Management},
+pages = {5321–5325},
+numpages = {5},
+keywords = {deep learning, fine-grained linguistic annotation, Chinese grammatical error correction},
+location = {Birmingham, United Kingdom},
+series = {CIKM '23}
+}
