@@ -93,7 +93,7 @@ def train_model(train_set, automatic_update=False):
 
             else:
                 loss = loss_func(y_hat, y.long()).sum()
-                y_hat = softmax(Y-hat)
+                y_hat = softmax(y_hat)
                 model.manual_backward(X, y, y_hat)
 
 
