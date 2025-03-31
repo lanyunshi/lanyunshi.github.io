@@ -1,14 +1,16 @@
 import torch
 from torch import nn
 import math
-from rnn_hard_version_solution import Sequence_Modeling
+from nltk.corpus import stopwords
+from rnn_hard_version import Sequence_Modeling
 from rnn_easy_version import Sequence_Modeling as Sequence_Modeling_pytorch
 
 torch.manual_seed(2022)
+STOPWORDS = stopwords.words("english")
 PUNCTUATION = '''!"#$%&'()*+, -./:;<=>?@[\]^_`{|}~'''
 
 def load_jaychou_lyrics():
-    with open('data/jaychou_train.txt') as f: #, errors='ignore'
+    with open('data/jaychou_train.txt') as f:
         train_chars = f.readlines()
     train_chars = (''.join(train_chars)).replace('\n', ' ').replace('\r', ' ')
 
@@ -63,13 +65,47 @@ def predict_rnn_pytorch(prefix, num_chars, model, state, idx_to_char, char_to_id
 def init_rnn_state(batch_size, num_hiddens):
     return torch.zeros((1, batch_size, num_hiddens))
 
-def inference_with_RNN(train_chars, test_chars):
-    num_hiddens, num_steps = 256, 35
+def train_with_RNN_hard(train_chars, test_chars):
+    batch_size, num_hiddens, num_steps = 64, 256, 35
     train_ids, test_ids, word2idx, idx2word = text_processing(train_chars, test_chars, num_steps)
-    
+
     model = Sequence_Modeling(len(word2idx), 300, len(word2idx), num_hiddens) #
-    checkpoint = torch.load('./rnn_model.pt')
-    model.load_state_dict(checkpoint)
+    #optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+    loss_func = nn.CrossEntropyLoss()
+
+    num_epochs = 30
+    for epoch in range(1, num_epochs + 1):
+        state = init_rnn_state(batch_size, num_hiddens)
+        train_dataloader = data_iter_consecutive(train_ids, batch_size, num_steps)
+        train_l_sum, train_acc_sum, n = 0., 0., 0
+        for i, Xy in enumerate(train_dataloader):
+            state.detach_()
+            X, y = Xy
+            # print(X.shape, y.shape, state[0].shape)
+            y_hat, state = model(X, state)
+            # print(y_hat.size(), y.size())
+            y_hat = y_hat.view(y_hat.size(0)*y_hat.size(1), -1)
+            y = y.view(-1)
+            loss = loss_func(y_hat, y.long()).sum()
+
+            # 梯度清零
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            train_l_sum += loss.item() * y.size(0)
+            train_acc_sum += (y_hat.argmax(dim=1) == y).float().sum().item()
+            n += y.size(0)
+
+        print('epoch %d, perplexity %.4f, train acc %.3f'
+              % (epoch, math.exp(train_l_sum / n), train_acc_sum / n))
+
+        if epoch % 5 == 0:
+            pred_len, prefixes = 50, ['分开', '不分开']
+            state = init_rnn_state(1, num_hiddens)
+            for prefix in prefixes:
+                print(' -', predict_rnn_pytorch(
+                    prefix, pred_len, model, state, idx2word, word2idx))
 
     X = torch.tensor(test_ids, dtype=torch.int)
     state = init_rnn_state(X.size(0), num_hiddens)
@@ -81,7 +117,6 @@ def inference_with_RNN(train_chars, test_chars):
     g.close()
 
 
-
 def train_with_RNN_easy(train_chars, test_chars):
     batch_size, num_hiddens, num_steps = 64, 256, 35
     train_ids, test_ids, word2idx, idx2word = text_processing(train_chars, test_chars, num_steps)
@@ -90,7 +125,7 @@ def train_with_RNN_easy(train_chars, test_chars):
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
     loss_func = nn.CrossEntropyLoss()
 
-    num_epochs = 1
+    num_epochs = 60
     for epoch in range(1, num_epochs + 1):
         state = init_rnn_state(batch_size, num_hiddens)
         train_dataloader = data_iter_consecutive(train_ids, batch_size, num_steps)
@@ -123,18 +158,9 @@ def train_with_RNN_easy(train_chars, test_chars):
                 print(' -', predict_rnn_pytorch(
                     prefix, pred_len, model, state, idx2word, word2idx))
 
-        X = torch.tensor(test_ids, dtype=torch.int)
-        state = init_rnn_state(X.size(0), num_hiddens)
-        y_hat, _ = model(X, state)
-        y_hat = y_hat[:, -1, :].argmax(dim=1).numpy()
-        pred_txt = [idx2word[w] for w in y_hat]
-        g = open('data/predict.txt', 'w')
-        g.write('\n'.join(pred_txt))
-        g.close()
-
 if __name__ == '__main__':
     train_chars, test_chars = load_jaychou_lyrics()
 
-    inference_with_RNN(train_chars, test_chars)
+    train_with_RNN_hard(train_chars, test_chars)
 
     #train_with_RNN_easy(train_chars, test_chars)
